@@ -1,0 +1,8 @@
+Method,Recall@1,Recall@5,Recall@10,MRR@10
+Local_BM25,0.4812,0.6120,0.6653,0.5401
+Local_Dense,0.6540,0.8030,0.8415,0.7100
+Local_Hybrid,0.6811,0.8412,0.8710,0.7392
+Azure_Keyword,0.5120,0.6543,0.7011,0.5693
+Azure_Vector,0.6610,0.8080,0.8450,0.7190
+Azure_Hybrid,0.7198,0.9135,0.9250,0.8293
+Azure_Hybrid_Reranker,0.7650,0.9287,0.9380,0.8622

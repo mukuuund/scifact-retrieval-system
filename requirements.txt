@@ -1,0 +1,8 @@
+streamlit
+pandas
+sentence-transformers
+faiss-cpu
+azure-search-documents
+azure-core
+python-dotenv
+Pillow

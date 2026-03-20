@@ -6,3 +6,4 @@ azure-search-documents
 azure-core
 python-dotenv
 Pillow
+rank_bm25

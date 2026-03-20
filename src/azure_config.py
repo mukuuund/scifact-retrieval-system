@@ -28,7 +28,7 @@ def load_azure_config() -> dict:
     missing_vars = [k for k, v in config.items() if not v and k != "STORAGE_CONNECTION_STRING"]
     
     if missing_vars:
-        error_msg = f"Missing required Azure environment variables: {', '.join(missing_vars)}"
+        error_msg = f"Missing required Azure settings: {', '.join(missing_vars)}. Please provide them via local .env or Cloud Environment Variables/Secrets."
         logger.error(error_msg)
         raise ValueError(error_msg)
         

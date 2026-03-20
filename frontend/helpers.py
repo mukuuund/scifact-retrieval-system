@@ -46,7 +46,8 @@ def load_cached_azure_client():
         client = get_search_client(config['SEARCH_ENDPOINT'], config['SEARCH_API_KEY'], config['SEARCH_INDEX_NAME'])
         return client
     except Exception as e:
-        st.warning(f"Azure Connection Failed: {e}. Azure methods will be unavailable.")
+        st.warning(f"⚠️ **Azure Connection Failed:** {e}\n\nAzure AI Search algorithms will be disabled in the UI.")
+        st.info("💡 **Running on Streamlit Cloud?**\nGo to your deployed app's **Settings > Advanced > Secrets** and paste your Azure variables:\n```toml\nAZURE_SEARCH_ENDPOINT=\"...\"\nAZURE_SEARCH_API_KEY=\"...\"\nAZURE_SEARCH_INDEX_NAME=\"...\"\nAZURE_STORAGE_CONNECTION_STRING=\"...\"\n```")
         return None
 
 # -------------------------------------------------------------

@@ -1,5 +1,7 @@
 # Multi-Stage SciFact Retrieval Pipeline
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://scifact-retrieval-system-ekmitjqr7ze4ke6kpvnvhj.streamlit.app/)
+
 An end-to-end, production-ready system for high-accuracy evidence retrieval within scientific literature. Evaluates and bridges traditional local pipelines with state-of-the-art Azure AI Search infrastructures.
 
 ## Problem Statement
@@ -44,20 +46,22 @@ Dense retrieval acts optimally as a "First-Stage Retriever", pulling broadly mat
 - **Native Cloud Normalization prevails:** Azure's internal scoring standardization outperforms raw local addition of inverse ranks.
 - **Precision dictates User Experience:** Reranking minimally impacts top-tier Recall boundaries but powerfully pushes the correct document into the #1 slot, validating its use in high-confidence pipelines.
 
-## Deployment to Azure App Service (Linux)
+## Live Demo
+**[Launch SciFact Retrieval System 🚀](https://scifact-retrieval-system-ekmitjqr7ze4ke6kpvnvhj.streamlit.app/)**
 
-This repository is ready to be deployed to Azure App Service via GitHub.
+## Deployment to Streamlit Cloud
 
-1. Push this repository to GitHub.
-2. In the Azure Portal, create a new **Web App** (Publish: Code, Runtime stack: Python 3.1x, OS: Linux).
-3. In the Web App's **Deployment Center**, connect your GitHub repository to enable CI/CD.
-4. Go to **Settings > Environment variables** (or Configuration) and add the following App settings:
-   - `AZURE_SEARCH_ENDPOINT`
-   - `AZURE_SEARCH_API_KEY`
-   - `AZURE_SEARCH_INDEX_NAME`
-   - `AZURE_STORAGE_CONNECTION_STRING` (If needed)
-5. Set the Startup Command (under Configuration -> General Settings) to: `bash run.sh`
-6. Azure App Service will install dependencies from `requirements.txt` and launch the Streamlit frontend.
+This repository is comprehensively configured for Streamlit Community Cloud.
+
+1. Go to [share.streamlit.io](https://share.streamlit.io/) and create a new app.
+2. Point it to this GitHub Repository branch and set the **Main file path** to `frontend/app.py`.
+3. In the **Advanced Settings > Secrets** block, paste your Azure credentials securely in TOML format:
+   ```toml
+   AZURE_SEARCH_ENDPOINT = "..."
+   AZURE_SEARCH_API_KEY = "..."
+   AZURE_SEARCH_INDEX_NAME = "..."
+   ```
+4. Click **Deploy!**
 
 ***
 

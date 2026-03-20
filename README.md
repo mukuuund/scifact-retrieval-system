@@ -1,12 +1,3 @@
-Viewed README.md:1-86
-
-It looks like you might have accidentally copied the *rendered* version of the README from GitHub (which strips away the underlying formatting like bolding, tables, and headers)!
-
-You do not need to rewrite or fix anything. Because of the code changes we made step previously, **your local [README.md](cci:7://file:///c:/Users/Mukun/OneDrive/Desktop/Coding/Azure%20Project/README.md:0:0-0:0) file actually still has all the perfect formatting already programmed in.** 
-
-If you'd like to copy it, here is the exact full, complete markdown of your [README.md](cci:7://file:///c:/Users/Mukun/OneDrive/Desktop/Coding/Azure%20Project/README.md:0:0-0:0) file as it currently exists on your computer:
-
-```markdown
 # Multi-Stage SciFact Retrieval Pipeline
 
 An end-to-end, production-ready system for high-accuracy evidence retrieval within scientific literature. Evaluates and bridges traditional local pipelines with state-of-the-art Azure AI Search infrastructures.
@@ -66,30 +57,47 @@ This repository is ready to be deployed to Azure App Service via GitHub.
    - `AZURE_SEARCH_INDEX_NAME`
    - `AZURE_STORAGE_CONNECTION_STRING` (If needed)
 5. Set the Startup Command (under Configuration -> General Settings) to: `bash run.sh`
-6. Azure App Service will install dependencies from [requirements.txt](cci:7://file:///c:/Users/Mukun/OneDrive/Desktop/Coding/Azure%20Project/requirements.txt:0:0-0:0) and launch the Streamlit frontend.
+6. Azure App Service will install dependencies from `requirements.txt` and launch the Streamlit frontend.
 
 ***
 
 ## How to Run
+
 #### 1. Configure the Cloud Database
-Ensure your [.env](cci:7://file:///c:/Users/Mukun/OneDrive/Desktop/Coding/Azure%20Project/.env:0:0-0:0) lists: `AZURE_SEARCH_ENDPOINT`, `AZURE_SEARCH_API_KEY`, and `AZURE_SEARCH_INDEX_NAME`.  
-`python create_search_index.py`
+Ensure your `.env` lists: `AZURE_SEARCH_ENDPOINT`, `AZURE_SEARCH_API_KEY`, and `AZURE_SEARCH_INDEX_NAME`.  
+```bash
+python create_search_index.py
+```
+
 #### 2. GPU Batched Embedding Push
 Safely bulk upload the SciFact corpus up to Azure (will autodetect CUDA).  
-`python push_documents.py --batch-size 64`
+```bash
+python push_documents.py --batch-size 64
+```
+
 #### 3. General Evaluation Runner
 Pings the custom local mechanisms side-by-side against Azure natively. Outputs `final_results.csv`.  
-`python compare_azure_vs_local.py`
+```bash
+python compare_azure_vs_local.py
+```
+
 #### 4. Advanced System Simulation
 Runs the full end-to-end multi-stage pipeline across all valid claims to benchmark MRR@10.  
-`python run_reranked_search.py`
+```bash
+python run_reranked_search.py
+```
+
 #### 5. Generate Metric Visualizations
-`python plot_final_results.py`
+```bash
+python plot_final_results.py
+```
+
 #### 6. Launch the Interactive Frontend Demo (Streamlit)
 Spin up the modern local web-interface to test claims naturally and visualize the metrics dashboard.  
-`streamlit run frontend/app.py`
+```bash
+streamlit run frontend/app.py
+```
 
 ## Future Improvements
 - Implement chunking for papers exceeding 600-word abstracts.
 - Implement an LLM as a final Generator layer, passing the strictly reranked documents as Context for Retrieval-Augmented Generation (RAG).
-```
